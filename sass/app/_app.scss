@@ -80,8 +80,8 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 1.6rem 1.7rem;
             list-style: none;
-            li:nth-last-child(2),
             li:last-child label,
+            li:last-child .invalidation-message,
             input[type="radio"] {
                 @include css-visually-hidden;
                 &:focus,
@@ -138,7 +138,12 @@
             }
             input {
                 inline-size: 100%;
-                padding-inline-start: 4.7rem;
+                padding-inline-start: var(--app-button-extra-spacing-inline);
+                &:hover,
+                &:focus,
+                &:invalid {
+                    padding-inline-start: calc(var(--app-button-extra-spacing-inline) - var(--app-button-border-size));
+                }
             }
         }
         legend {
@@ -184,7 +189,8 @@
     @include css-media-queries($from-breakpoint: two-column-app) {
         --app-spacing: 3.2rem 3.2rem 3.2rem 4.8rem;
         --app-gap: 4.8rem;
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr var(--app-result-inline-size);
         gap: var(--app-gap);
         dd {
             --app-amount-text: 4.8rem;
@@ -204,7 +210,6 @@
             display: inline-flex;
             flex-direction: column;
             justify-content: space-between;
-            inline-size: var(--app-result-inline-size);
             margin-block-start: initial;
             dl {
                 row-gap: 4.1rem;
