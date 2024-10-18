@@ -1,0 +1,11 @@
+@charset "utf-8";
+
+// Mixins for App
+@mixin single-button-container {
+    display: flex;
+    flex-direction: column;
+}
+@mixin label-hover {
+    color: var(--tertiary-background);
+    background: var(--tertiary-background-hover);
+}

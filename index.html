@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+        <title>Frontend Mentor | Tip calculator app</title>
+        <link rel="stylesheet" type="text/css" href="./css/styles.css">
+    </head>
+    <body>
+
+        <!-- Begin header -->
+        <header id="header">
+            <h1><img src="./images/logo-splitter.svg" alt="Logo Splitter" width="87" height="54"></h1>
+        </header>
+        <!-- End header -->
+        
+        <main>
+
+            <!-- Begin app -->
+            <form class="app" method="post" novalidate>
+                <div class="parameters">
+                    <p>
+                        <label for="bill">Bill</label>
+                        <input id="bill" name="bill" type="number" min="0" step="0.01" placeholder="0">
+                    </p>
+                    <fieldset>
+                        <legend>Select Tip %</legend>
+                        <ul>
+                            <li>
+                                <input type="radio" id="tip-preselection-1" name="tip-preselection" value="5">
+                                <label for="tip-preselection-1">5%</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="tip-preselection-2" name="tip-preselection" value="10">
+                                <label for="tip-preselection-2">10%</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="tip-preselection-3" name="tip-preselection" value="15">
+                                <label for="tip-preselection-3">15%</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="tip-preselection-4" name="tip-preselection" value="25">
+                                <label for="tip-preselection-4">25%</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="tip-preselection-5" name="tip-preselection" value="50">
+                                <label for="tip-preselection-5">50%</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="tip-preselection-6" name="tip-preselection" value="Custom">
+                                <label for="tip-preselection-6">Custom</label>
+                            </li>
+                            <li>
+                                <label for="tip-custom">Custom</label>
+                                <input id="tip-custom" name="tip-custom" type="number" min="0" max="100" placeholder="Custom">
+                            </li>
+                        </ul>
+                    </fieldset>
+                    <p>
+                        <label for="persons">Number of People</label>
+                        <span id="persons-invalidation-message" class="invalidation-message" aria-live="assertive">Can’t be zero</span>
+                        <input id="persons" name="persons" type="number" min="1" placeholder="0" required aria-describedby="persons-invalidation-message">
+                    </p>
+                </div>
+                <div class="result">
+                    <dl>
+                        <dt>Tip Amount <span class="precision" aria-label="per person">/ person</span></dt>
+                        <dd>$4.27</dd>
+                        <dt>Total <span class="precision" aria-label="per person">/ person</span></dt>
+                        <dd>$32.79</dd>
+                    </dl>
+                    <p>
+                        <input type="reset" value="Reset">
+                    </p>
+                </div>
+            </form>
+            <!-- End app -->
+
+        </main>
+
+        <footer class="attribution">
+            <p>Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. Coded by <a href="https://github.com/webdevbynight">@webdevbynight</a>.</p>
+        </footer>
+
+        <script src="./js/index.js" type="module"></script>
+
+    </body>
+</html>

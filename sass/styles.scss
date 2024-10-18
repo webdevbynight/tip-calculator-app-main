@@ -1,0 +1,24 @@
+@charset "utf-8";
+@use "sass:list";
+
+/**
+ * @site Tip calculator app
+ * @author Victor Brito
+ */
+
+// Browser configuration
+@use "./base/config" as *;
+
+@use "./base/mixins" with (
+    $media-queries-breakpoints: (
+        standalone-app: 500,
+        two-column-app: 915,
+        three-column-selection: 1260
+    )
+);
+@use "./variables";
+@use "./base/reset";
+@use "./base/print";
+@use "./typo/font-face";
+@use "./layout/layout";
+@use "./app/app";

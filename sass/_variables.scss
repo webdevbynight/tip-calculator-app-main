@@ -1,0 +1,48 @@
+@charset "utf-8";
+
+// Variables
+:root {
+    // Font and text
+    --font: "Space Mono", monospace;
+    --app-label-text: 1.6rem;
+    --app-input-text: 2.4rem;
+    --app-precision-text: 1.3rem;
+    --app-amount-text: 3.2rem;
+    --app-amount-letter-spacing: -0.067rem;
+    --app-button-text: 2rem;
+
+    // Colours
+    --opacity: .35;
+    --primary: #00474b;
+    --primary-transparentised: rgb(0 71 75 / var(--opacity));
+    --secondary: #5e7a7d;
+    --tertiary: #547878;
+    --quaternary: white;
+    --quinary: #7f9d9f;
+    --senary: #26c2ae;
+    --septenary: #e17457;
+    --primary-background: #c5e4e7;
+    --secondary-background: white;
+    --tertiary-background: #00474b;
+    --tertiary-background-hover: #26c2ae;
+    --quaternary-background: #26c2ae;
+    --quaternary-background-hover: #9fe8df;
+    --quinary-background: #f3f9fa;
+    --senary-background: #0d686d;
+    --septenary-background: #e17052;
+
+    // Margins, paddings, boxes, gaps, borders and shadows
+    --app-min-inline-size: 45.5rem;
+    --app-max-inline-size: 92rem;
+    --app-radius: 2.5rem;
+    --app-spacing: 2.4rem;
+    --app-gap: 3.2rem;
+    --app-result-inline-size: calc(41.3 / 92 * 100%);
+    --app-result-radius: 1.5rem;
+    --app-result-spacing: 3.7rem 2.2rem 2.4rem 2.4rem;
+    --app-button-radius: .5rem;
+    --app-button-spacing-block: .6rem;
+    --app-button-spacing-inline: 1.7rem;
+    --app-button-border-size: .2rem;
+    --app-button-block-size: 4.8rem;
+}

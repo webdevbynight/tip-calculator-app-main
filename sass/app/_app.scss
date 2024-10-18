@@ -1,0 +1,221 @@
+@charset "utf-8";
+@use "../base/mixins" as *;
+@use "./mixins" as mixins;
+
+/** @section App */
+
+.app {
+    font-size: var(--app-label-text);
+    line-height: normal;
+    color: var(--primary);
+    background: var(--secondary-background);
+    padding: var(--app-spacing);
+    border-radius: var(--app-radius) var(--app-radius) 0 0;
+    dd {
+        font-size: var(--app-amount-text);
+        letter-spacing: var(--app-amount-letter-spacing);
+    }
+    ul label,
+    input {
+        font-size: var(--app-input-text);
+        block-size: var(--app-button-block-size);
+        border-radius: var(--app-button-radius);
+    }
+    ul label,
+    input[type="reset"] {
+        transition: 300ms ease-in;
+    }
+    fieldset {
+        margin-block: var(--app-gap);
+    }
+    input {
+        font-weight: inherit;
+        box-sizing: border-box;
+        border: none;
+        &[type="number"] {
+            color: var(--primary);
+            background: var(--quinary-background);
+            text-align: end;
+            padding: var(--app-button-spacing-block) var(--app-button-spacing-inline);
+            appearance: textfield;
+            &::placeholder {
+                opacity: var(--opacity);
+            }
+            &::-webkit-inner-spin-button {
+                display: none;
+            }
+            &:hover,
+            &:focus,
+            &:invalid {
+                padding: calc(var(--app-button-spacing-block) - var(--app-button-border-size)) calc(var(--app-button-spacing-inline) - var(--app-button-border-size));
+            }
+            &:hover,
+            &:focus {
+                border: var(--app-button-border-size) solid var(--quaternary-background);
+            }
+            &:invalid {
+                border: var(--app-button-border-size) solid var(--septenary-background);
+            }
+        }
+        &[type="reset"] {
+            color: var(--primary);
+            background: var(--quaternary-background);
+            text-transform: uppercase;
+            &:hover,
+            &:focus {
+                background: var(--quaternary-background-hover);
+            }
+            &:disabled {
+                background: var(--senary-background);
+            }
+        }
+        &:focus {
+            outline: none;
+        }
+    }
+    .parameters {
+        padding-inline: .8rem;
+        ul {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.6rem 1.7rem;
+            list-style: none;
+            li:nth-last-child(2),
+            li:last-child label,
+            input[type="radio"] {
+                @include css-visually-hidden;
+                &:focus,
+                &:checked {
+                    + label {
+                        @include mixins.label-hover;
+                    }
+                }
+            }
+            input[type="number"] {
+                &::placeholder {
+                    color: var(--tertiary);
+                    opacity: initial;
+                }
+            }
+            label {
+                color: var(--quaternary);
+                background: var(--tertiary-background);
+                text-align: center;
+                align-content: center;
+                cursor: pointer;
+                &:hover {
+                    @include mixins.label-hover;
+                }
+            }
+        }
+        li {
+            @include mixins.single-button-container;
+        }
+        p {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem;
+            align-items: center;
+            position: relative;
+            &::before {
+                background: url("images/app-sprite.svg") no-repeat;
+                background-position-x: center;
+                inline-size: 13px;
+                block-size: 17px;
+                transform: translateY(50%);
+                position: absolute;
+                inset-block-end: calc(var(--app-button-block-size) / 2);
+                inset-inline-start: var(--app-button-spacing-inline);
+                content: "";
+            }
+            &:last-of-type {
+                &::before {
+                    background-position-y: bottom;
+                }
+            }
+            label {
+                flex: 1;
+            }
+            input {
+                inline-size: 100%;
+                padding-inline-start: 4.7rem;
+            }
+        }
+        legend {
+            margin-block-end: 1.6rem;
+        }
+    }
+    .result {
+        color: var(--quaternary);
+        background: var(--tertiary-background);
+        padding: var(--app-result-spacing);
+        margin-block-start: var(--app-gap);
+        border-radius: var(--app-result-radius);
+        dl {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 2rem 1rem;
+        }
+        dd {
+            color: var(--senary);
+            text-align: end;
+        }
+        p {
+            @include mixins.single-button-container;
+            margin-block-start: 3.2rem;
+        }
+    }
+    .precision {
+        font-size: var(--app-precision-text);
+        color: var(--quinary);
+        white-space: nowrap;
+        display: block;
+    }
+    .invalidation-message {
+        color: var(--septenary);
+    }
+    @include css-media-queries($from-breakpoint: standalone-app) {
+        box-sizing: border-box;
+        inline-size: clamp(var(--app-min-inline-size), calc(92 / 144 * 100dvi), var(--app-max-inline-size));
+        margin-inline: auto;
+        border-radius: var(--app-radius);
+    }
+    @include css-media-queries($from-breakpoint: two-column-app) {
+        --app-spacing: 3.2rem 3.2rem 3.2rem 4.8rem;
+        --app-gap: 4.8rem;
+        display: flex;
+        gap: var(--app-gap);
+        dd {
+            --app-amount-text: 4.8rem;
+            --app-amount-letter-spacing: -0.1rem;
+        }
+        fieldset {
+            margin-block: 4rem;
+        }
+        .parameters {
+            padding: 1.3rem 0 1.6rem;
+            ul {
+                column-gap: 1.4rem;
+            }
+        }
+        .result {
+            --app-result-spacing: 4rem;
+            display: inline-flex;
+            flex-direction: column;
+            justify-content: space-between;
+            inline-size: var(--app-result-inline-size);
+            margin-block-start: initial;
+            dl {
+                row-gap: 4.1rem;
+            }
+        }
+    }
+    @include css-media-queries($from-breakpoint: three-column-selection) {
+        .parameters {
+            ul {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    }
+}
