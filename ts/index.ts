@@ -14,6 +14,20 @@ const dataValidation = {
 } as const;
 
 /**
+ * Checks the reset button and disables it if every field used for calculations is set to 0.
+ * 
+ * @param form - The form node containing the reset button.
+ * @param calculations - The calculations to check against.
+ */
+const checkResetButton = (form: HTMLFormElement, calculations: Calculations = new Map()): void => {
+    const resetButton = form.querySelector<HTMLInputElement>(`input[type="reset"]`);
+    if (resetButton) {
+        const calculationsValues = [...calculations.values()];
+        resetButton.disabled = calculationsValues.every(value => !value);
+    }
+};
+
+/**
  * Handles the errors.
  * 
  * @param key - The key.
@@ -120,6 +134,7 @@ if (app) {
     const resultAmounts = app.querySelectorAll(".result dd");
     app.addEventListener("reset", () => {
         displayAmounts(resultAmounts);
+        checkResetButton(app);
     });
     const fields = app.querySelectorAll<HTMLInputElement>(`input:not([type="reset"])`);
     const formData = new FormData();
@@ -133,6 +148,7 @@ if (app) {
             const calculations: Calculations = new Map();
             checkFormData(formData, calculations, errors);
             setErrorMessages(errors);
+            checkResetButton(app, calculations);
             if (errors.size) document.getElementById(errors.values().next().value as string)?.focus();
             else displayAmounts(resultAmounts, calculateTip(calculations));
         });
